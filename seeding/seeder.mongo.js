@@ -4,14 +4,15 @@ const cpus = require('os').cpus();
 const { seedAllDescriptions } = require('./seedFunctions.mongo');
 const { printStart, printFinish, makeBars } = require('./seedLogging');
 
-let numCPUs = (process.env.numCPUs) ? parseInt(process.env.numCPUs, 10) : cpus.length;
-let startingValue = process.env.startingValue ? parseInt(process.env.startingValue, 10) : 0;
-let seedCount = (process.env.seedCount ? parseInt(process.env.seedCount, 10) : 10000000) / numCPUs;
-let batchSize = process.env.batchSize ? parseInt(process.env.batchSize, 10) : 1000;
-let printEvery = process.env.printEvery ? parseInt(process.env.printEvery, 10) : 10000;
+// let numCPUs = (process.env.numCPUs) ? parseInt(process.env.numCPUs, 10) : cpus.length;
+const numCPUs = 1;
+const startingValue = process.env.startingValue ? parseInt(process.env.startingValue, 10) : 0;
+const seedCount = (process.env.seedCount ? parseInt(process.env.seedCount, 10) : 10000000) / numCPUs;
+const batchSize = process.env.batchSize ? parseInt(process.env.batchSize, 10) : 1000;
+const printEvery = process.env.printEvery ? parseInt(process.env.printEvery, 10) : 10000;
 
-const url = 'mongodb://localhost:27017:';
-const dbName = process.env.dbname || 'descriptions_n';
+const url = 'mongodb://localhost:27017';
+const dbName = process.env.dbname || 'descriptions';
 
 const workers = [];
 let finishedProcesses = 0;
@@ -61,7 +62,8 @@ let seedDatabase = async () => {
   }
 
   const tick = (cluster.isMaster) ? (inserted, ips) => {
-    bars[0].tick({ inserted, ips });
+    //bars[0].tick({ inserted, ips });
+    console.log(`Inserted ${inserted} items (${ips} inserts/sec)`);
   } : (inserted, ips, finished) => {
     process.send(`${process.env.barId},${inserted},${ips},${finished}`);
   };
