@@ -10,7 +10,7 @@ let seedCount = (process.env.seedCount ? parseInt(process.env.seedCount, 10) : 1
 let batchSize = process.env.batchSize ? parseInt(process.env.batchSize, 10) : 1000;
 let printEvery = process.env.printEvery ? parseInt(process.env.printEvery, 10) : 10000;
 
-const url = 'mongodb://mongo';
+const url = 'mongodb://localhost:27017:';
 const dbName = process.env.dbname || 'descriptions_n';
 
 const workers = [];
