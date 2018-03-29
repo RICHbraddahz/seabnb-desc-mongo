@@ -8,7 +8,7 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "seed-mongodb": "node seeder.mongo.js"
+    "seed-mongodb": "node seeding/seeder.mongo.js"
   },
   "dependencies": {
     "ascii-progress": "^1.0.5",
