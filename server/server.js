@@ -14,7 +14,7 @@ MongoClient.connect('mongodb://localhost/descriptions')
 
     app.get('/:id', async (req, res) => {
       const { id } = req.params;
-      let itemData = await collection.findOne({ id });
+      let itemData = await collection.findOne({ id: parseInt(id, 10) });
 
       res.send(itemData);
     });
