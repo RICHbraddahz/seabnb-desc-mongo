@@ -88,7 +88,7 @@ const seedAllDescriptions = async (
     let inserted = (j + 1) * printEvery;
     let timeDifference = dateMath.diff(startTime, new Date(), 'seconds', true);
     let insertsPerSec = Math.floor(inserted / timeDifference);
-    tick(inserted, insertsPerSec, inserted >= count);
+    console.log(`Inserted ${inserted} items (${insertsPerSec} inserts/sec)`);
   }
 };
 
