@@ -29,8 +29,8 @@ let seedDatabase = async () => {
     printEvery, startTime
   );
 
-  console.log('| Setting id as index...');
-  await collection.createIndex({ id: 1 });
+  // console.log('| Setting id as index...');
+  // await collection.createIndex({ id: 1 });
   printFinish(url, dbName, startTime, seedCount);
   client.close();
   process.exit();
